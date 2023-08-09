@@ -1,5 +1,5 @@
 export enum QuizState {
-  uploading,
+  pending,
   answering,
   results
 }

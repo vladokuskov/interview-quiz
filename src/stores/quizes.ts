@@ -7,7 +7,7 @@ export const useQuizesStore = defineStore('quizes', () => {
   const preLoadedQuizes = ref<Topic[]>([])
   const quizes = ref<Topic[]>([])
   const completedQuizes = ref<CompletedTopic[]>([])
-  const selectedQuizState = ref<QuizState>(QuizState.uploading)
+  const selectedQuizState = ref<QuizState>(QuizState.pending)
 
   const loadTopics = (topics: Topic[]) => {
     if (topics.length) {
