@@ -1,0 +1,23 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "module": "es2022",
+    "moduleResolution": "Node",
+    "baseUrl": "./",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["vite.config.*", "env.d.ts", "src/**/*", "src/**/*.vue"]
+}

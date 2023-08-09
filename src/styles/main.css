@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+*::-moz-selection {
+  background: #94949450;
+}
+*::selection {
+  background: #94949450;
+}
+*:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+*:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+li {
+  list-style: none;
+}
