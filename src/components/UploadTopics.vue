@@ -2,56 +2,53 @@
 import { storeToRefs } from 'pinia';
 import { onMounted, ref, watch } from 'vue';
 import { useQuizesStore } from '../stores/quizes';
-import { QuizState } from '@/types/global.types'
 
 const quizesStore = useQuizesStore()
-const { selectedQuizState } = storeToRefs(quizesStore)
+const { preLoadedQuizes } = storeToRefs(quizesStore)
 const { loadTopics, } = quizesStore
 
-const fileContent = ref()
-const convertedData = ref()
+const fileContent = ref<string | null>(null);
+const convertedData = ref<string[]>([]);
 
-const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+const handleFileChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (file) {
+        const reader = new FileReader();
 
-    reader.onload = () => {
-        fileContent.value = reader.result;
-    };
+        reader.onload = () => {
+            fileContent.value = reader.result as string;
+        };
 
-    reader.readAsText(file);
-}
+        reader.readAsText(file);
+    }
+};
 
 onMounted(() => {
-
-})
-
+    const topics = localStorage.getItem('topics');
+    if (topics.length) {
+        loadTopics(JSON.parse(topics));
+    }
+});
 
 watch(fileContent, () => {
-    convertToFileObject()
-})
+    if (fileContent.value) {
+        convertToFileObject();
+    }
+});
 
 const convertToFileObject = () => {
-    const lines = fileContent.value.split('\n');
-    const topics = [];
-
-    lines.forEach(line => {
-        const trimmedLine = line.trim();
-        if (trimmedLine !== '') {
-            topics.push(trimmedLine);
-        }
-    });
-
-    convertedData.value = topics;
-}
+    if (fileContent.value) {
+        const lines = fileContent.value.split('\n');
+        const topics = lines.map(line => line.trim()).filter(line => line !== '');
+        convertedData.value = topics;
+    }
+};
 
 const startQuiz = () => {
-    const data = convertedData.value.map((topic) => {
-        return { title: topic }
-    })
-
-    loadTopics(data)
-}
+    const data = convertedData.value.map(topic => ({ title: topic }));
+    loadTopics(data);
+};
 
 </script>
 

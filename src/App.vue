@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import { QuizState } from '@/types/global.types';
 import { storeToRefs } from 'pinia';
 import CompletedTopics from './components/CompletedTopics.vue';
 import CurrentTopic from './components/CurrentTopic.vue';
-import { useQuizesStore } from './stores/quizes';
-import { QuizState } from '@/types/global.types'
 import UploadTopics from './components/UploadTopics.vue';
+import { useQuizesStore } from './stores/quizes';
 
 const quizesStore = useQuizesStore()
 const { selectedQuizState } = storeToRefs(quizesStore)
+
 
 </script>
 

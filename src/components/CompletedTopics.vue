@@ -7,7 +7,18 @@ import { QuizState } from '@/types/global.types'
 
 const quizesStore = useQuizesStore()
 const { completedQuizes, preLoadedQuizes, quizes } = storeToRefs(quizesStore)
-const { resetTopics, changeQuizState } = quizesStore
+const { resetTopics, changeQuizState, fullQuizReset } = quizesStore
+
+const handleTopicsReset = () => {
+    const isConfirmed = confirm('Are you sure you want to reset topics? This action can`t be undone.')
+    isConfirmed && changeQuizState(QuizState.answering)
+}
+
+
+const handleQuizReset = () => {
+    const isConfirmed = confirm('Are you sure you want to reset the Quiz? This action can`t be undone.')
+    isConfirmed && fullQuizReset()
+}
 
 </script>
 
@@ -17,10 +28,13 @@ const { resetTopics, changeQuizState } = quizesStore
         <p class="font-semibold text-neutral-400 text-sm">{{ completedQuizes.length }} topics of {{ preLoadedQuizes.length
         }}</p>
         <div class="flex items-center justify-start gap-4">
+            <button v-if="quizes.length" @click="handleTopicsReset" aria-label="Continue"
+                class="p-1 bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 my-2 rounded-md text-white font-semibold px-2">Continue</button>
             <button v-if="completedQuizes.length" @click="resetTopics" aria-label="Reset topics"
                 class="p-1 bg-yellow-500 hover:bg-yellow-400 focus:bg-yellow-400 my-2 rounded-md text-white font-semibold px-2">Reset</button>
-            <button v-if="quizes.length" @click="changeQuizState(QuizState.answering)" aria-label="Continue"
-                class="p-1 bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 my-2 rounded-md text-white font-semibold px-2">Continue</button>
+            <button v-if="quizes.length" @click="handleQuizReset" aria-label="Quiz reset"
+                class="p-1 bg-red-500 hover:bg-red-400 focus:bg-red-400 my-2 rounded-md text-white font-semibold px-2">Quiz
+                reset</button>
         </div>
 
         <div v-for="topic in completedQuizes" :key="topic.title"

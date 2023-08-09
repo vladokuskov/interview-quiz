@@ -13,13 +13,20 @@ export const useQuizesStore = defineStore('quizes', () => {
     if (topics.length) {
       quizes.value = topics
       preLoadedQuizes.value = topics.slice()
-
+      localStorage.setItem('topics', JSON.stringify(topics.slice()))
       selectedQuizState.value = QuizState.answering
     }
   }
 
   const changeQuizState = (state: QuizState) => {
     selectedQuizState.value = state
+  }
+
+  const fullQuizReset = () => {
+    quizes.value = []
+    preLoadedQuizes.value = []
+    localStorage.setItem('topics', JSON.stringify([]))
+    selectedQuizState.value = QuizState.pending
   }
 
   const resetTopics = () => {
@@ -49,6 +56,7 @@ export const useQuizesStore = defineStore('quizes', () => {
     changeQuizState,
     resetTopics,
     preLoadedQuizes,
-    selectedQuizState
+    selectedQuizState,
+    fullQuizReset
   }
 })
