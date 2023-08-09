@@ -10,14 +10,18 @@ const { completedQuizes, preLoadedQuizes, quizes } = storeToRefs(quizesStore)
 const { resetTopics, changeQuizState, fullQuizReset } = quizesStore
 
 const handleTopicsReset = () => {
-    const isConfirmed = confirm('Are you sure you want to reset topics? This action can`t be undone.')
-    isConfirmed && resetTopics
+    const isConfirmed = window.confirm('Are you sure you want to reset topics? This action can`t be undone.')
+    if (isConfirmed) {
+        resetTopics()
+    }
 }
 
 
 const handleQuizReset = () => {
-    const isConfirmed = confirm('Are you sure you want to reset the Quiz? This action can`t be undone.')
-    isConfirmed && fullQuizReset()
+    const isConfirmed = window.confirm('Are you sure you want to reset the Quiz? This action can`t be undone.')
+    if (isConfirmed) {
+        fullQuizReset()
+    }
 }
 
 </script>
