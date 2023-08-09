@@ -29,7 +29,8 @@ const handleNextQuiz = () => {
     <section class="flex w-full flex-col items-center justify-center gap-4">
         <h1 class="text-xl font-semibold text-neutral-700">{{ quizes && quizes[currentIndex].title }}</h1>
         <textarea v-model="quizExplanation" aria-label="Topic explanation"
-            class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4"
+            placeholder="Write your answer/explanation here..."
+            class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4 min-h-[6rem] resize-y"
             style="white-space: pre-line;"></textarea>
         <button @click="handleNextQuiz" aria-label="Next topic"
             class="bg-lime-400 hover:bg-lime-300 focus:bg-lime-300 transition-all rounded-md font-semibold py-2 px-6 text-white">Next</button>
