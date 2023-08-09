@@ -12,14 +12,14 @@ const currentIndex = ref(quizes.value ? Math.floor(Math.random() * quizes.value.
 const quizExplanation = ref('');
 
 const handleNextQuiz = () => {
-    if (quizes.value) {
-        currentIndex.value = Math.floor(Math.random() * quizes.value.length);
-        const selectedQuiz = quizes.value[currentIndex.value];
+
+    currentIndex.value = Math.floor(Math.random() * (quizes.value?.length ?? 0));
+    const selectedQuiz = quizes.value?.[currentIndex.value];
 
 
+    if (selectedQuiz) {
         nextTopic(selectedQuiz.title, quizExplanation.value);
-
-        quizExplanation.value = ''
+        quizExplanation.value = '';
     }
 
 }
