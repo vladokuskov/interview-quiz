@@ -24,7 +24,7 @@ const handleFileChange = (event: Event) => {
 
 onMounted(() => {
     const topics = localStorage.getItem('topics');
-    if (topics.length) {
+    if (topics && topics.length) {
         loadTopics(JSON.parse(topics));
     }
 });
