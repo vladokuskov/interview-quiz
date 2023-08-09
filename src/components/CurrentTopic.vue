@@ -13,14 +13,16 @@ const quizExplanation = ref('');
 
 const handleNextQuiz = () => {
 
-    currentIndex.value = Math.floor(Math.random() * (quizes.value?.length ?? 0));
-    const selectedQuiz = quizes.value?.[currentIndex.value];
+    if (quizes.value.length > 0) {
+        currentIndex.value = Math.floor(Math.random() * quizes.value.length);
+        const selectedQuiz = quizes.value[currentIndex.value];
 
 
-    if (selectedQuiz) {
         nextTopic(selectedQuiz.title, quizExplanation.value);
         quizExplanation.value = '';
     }
+
+
 
 }
 </script>
@@ -30,7 +32,7 @@ const handleNextQuiz = () => {
         <h1 class="text-xl font-semibold text-neutral-700">{{ quizes && quizes[currentIndex].title }}</h1>
         <textarea v-model="quizExplanation" aria-label="Topic explanation"
             placeholder="Write your answer/explanation here..."
-            class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4 min-h-[6rem] resize-y"
+            class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4 min-h-[6rem] resize-yz"
             style="white-space: pre-line;"></textarea>
         <button @click="handleNextQuiz" aria-label="Next topic"
             class="bg-lime-400 hover:bg-lime-300 focus:bg-lime-300 transition-all rounded-md font-semibold py-2 px-6 text-white">Next</button>

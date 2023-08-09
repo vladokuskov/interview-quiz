@@ -3,12 +3,14 @@ import { defineStore } from 'pinia'
 import type { CompletedTopic, Topic } from '@/types/Topic.types'
 
 export const useQuizesStore = defineStore('quizes', () => {
-  const quizes = ref<Topic[] | null>(null)
+  const preLoadedQuizes = ref<Topic[]>([])
+  const quizes = ref<Topic[]>([])
   const isSeeResults = ref<boolean>(false)
   const completedQuizes = ref<CompletedTopic[]>([])
 
   const loadTopics = (topics: Topic[]) => {
     quizes.value = topics
+    preLoadedQuizes.value = topics
   }
 
   const toggleSeeResults = (value: boolean) => {
@@ -16,21 +18,17 @@ export const useQuizesStore = defineStore('quizes', () => {
   }
 
   const resetTopics = () => {
-    if (completedQuizes.value.length) {
-      quizes.value = completedQuizes.value.map((topic) => {
-        return { title: topic.title }
-      })
-    }
+    quizes.value = preLoadedQuizes.value
 
     isSeeResults.value = false
     completedQuizes.value = []
   }
 
   const nextTopic = (title: string, explanation: string) => {
-    const removedTopicIndex = quizes.value?.findIndex((topic) => topic.title === title)
+    const removedTopicIndex = quizes.value.findIndex((topic) => topic.title === title)
 
     if (removedTopicIndex !== undefined && removedTopicIndex !== -1) {
-      const removedTopic = quizes.value?.splice(removedTopicIndex, 1)[0]
+      const removedTopic = quizes.value.splice(removedTopicIndex, 1)[0]
       if (removedTopic) completedQuizes.value.push({ title: removedTopic.title, explanation })
     }
 

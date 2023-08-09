@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
   <main class="w-full max-w-[25rem] mx-auto  flex items-center  justify-center p-2 mt-8">
-    <CurrentTopic v-if="isSeeResults === false && quizes" />
+    <CurrentTopic v-if="isSeeResults === false && quizes.length" />
     <CompletedTopics v-else-if="isSeeResults === true" />
   </main>
 </template>
