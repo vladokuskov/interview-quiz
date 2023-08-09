@@ -15,7 +15,7 @@ const isExplanationOpen = ref(false)
 
 <template>
     <div class="relative w-full flex flex-col items-start justify-center  my-2 rounded-md">
-        <button @click="isExplanationOpen = !isExplanationOpen" :disabled="!explanation.length"
+        <button @click="isExplanationOpen = !isExplanationOpen" :disabled="explanation.length === 0"
             aria-label="See topic answer"
             :class="clsx('w-full p-2 bg-neutral-200 transition-colors', explanation.length ? 'cursor-pointer hover:bg-neutral-100 focus:bg-neutral-100' : 'cursor-default', isExplanationOpen ? 'rounded-t-md' : 'rounded-md')">
             <h3 class="font-semibold text-neutral-700">{{ title }}</h3>

@@ -1,27 +1,31 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { CompletedTopic, Topic } from '@/types/Topic.types'
+import { QuizState } from '@/types/global.types'
 
 export const useQuizesStore = defineStore('quizes', () => {
   const preLoadedQuizes = ref<Topic[]>([])
   const quizes = ref<Topic[]>([])
-  const isSeeResults = ref<boolean>(false)
   const completedQuizes = ref<CompletedTopic[]>([])
+  const selectedQuizState = ref<QuizState>(QuizState.uploading)
 
   const loadTopics = (topics: Topic[]) => {
-    quizes.value = topics
-    preLoadedQuizes.value = topics
+    if (topics.length) {
+      quizes.value = topics
+      preLoadedQuizes.value = topics.slice()
+
+      selectedQuizState.value = QuizState.answering
+    }
   }
 
-  const toggleSeeResults = (value: boolean) => {
-    isSeeResults.value = value
+  const changeQuizState = (state: QuizState) => {
+    selectedQuizState.value = state
   }
 
   const resetTopics = () => {
-    quizes.value = preLoadedQuizes.value
-
-    isSeeResults.value = false
+    quizes.value = JSON.parse(JSON.stringify(preLoadedQuizes.value))
     completedQuizes.value = []
+    changeQuizState(QuizState.answering)
   }
 
   const nextTopic = (title: string, explanation: string) => {
@@ -33,7 +37,7 @@ export const useQuizesStore = defineStore('quizes', () => {
     }
 
     if (quizes.value && quizes.value.length === 0) {
-      isSeeResults.value = true
+      changeQuizState(QuizState.results)
     }
   }
 
@@ -42,8 +46,9 @@ export const useQuizesStore = defineStore('quizes', () => {
     completedQuizes,
     nextTopic,
     loadTopics,
-    toggleSeeResults,
-    isSeeResults,
-    resetTopics
+    changeQuizState,
+    resetTopics,
+    preLoadedQuizes,
+    selectedQuizState
   }
 })

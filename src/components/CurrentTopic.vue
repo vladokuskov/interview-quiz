@@ -2,10 +2,11 @@
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useQuizesStore } from '../stores/quizes';
+import { QuizState } from '@/types/global.types';
 
 const quizesStore = useQuizesStore()
 const { quizes } = storeToRefs(quizesStore)
-const { nextTopic, toggleSeeResults } = quizesStore
+const { nextTopic, changeQuizState } = quizesStore
 
 const currentIndex = ref(quizes.value ? Math.floor(Math.random() * quizes.value.length) : 0);
 
@@ -36,7 +37,7 @@ const handleNextQuiz = () => {
             style="white-space: pre-line;"></textarea>
         <button @click="handleNextQuiz" aria-label="Next topic"
             class="bg-lime-400 hover:bg-lime-300 focus:bg-lime-300 transition-all rounded-md font-semibold py-2 px-6 text-white">Next</button>
-        <button @click="toggleSeeResults(true)" aria-label="End quiz"
+        <button @click="changeQuizState(QuizState.results)" aria-label="End quiz"
             class="p-1 bg-red-500 hover:bg-red-400 focus:bg-red-400 my-2 rounded-md text-white font-semibold px-2">End
             quiz</button>
     </section>
