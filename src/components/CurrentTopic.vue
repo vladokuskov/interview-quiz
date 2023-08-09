@@ -7,18 +7,21 @@ const quizesStore = useQuizesStore()
 const { quizes } = storeToRefs(quizesStore)
 const { nextTopic, toggleSeeResults } = quizesStore
 
-const currentIndex = ref(quizes ? Math.floor(Math.random() * quizes.value.length) : 0);
+const currentIndex = ref(quizes.value ? Math.floor(Math.random() * quizes.value.length) : 0);
 
 const quizExplanation = ref('');
 
 const handleNextQuiz = () => {
-    currentIndex.value = Math.floor(Math.random() * quizes.value.length);
-    const selectedQuiz = quizes.value[currentIndex.value];
+    if (quizes.value) {
+        currentIndex.value = Math.floor(Math.random() * quizes.value.length);
+        const selectedQuiz = quizes.value[currentIndex.value];
 
 
-    nextTopic(selectedQuiz.title, quizExplanation.value);
+        nextTopic(selectedQuiz.title, quizExplanation.value);
 
-    quizExplanation.value = ''
+        quizExplanation.value = ''
+    }
+
 }
 </script>
 
