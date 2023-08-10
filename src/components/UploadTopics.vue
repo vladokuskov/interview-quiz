@@ -64,16 +64,8 @@ const startQuiz = () => {
 </script>
 
 <template>
-    <section class="flex flex-col items-start justify-center gap-2">
-        <h1 class="text-xl text-neutral-800 font-semibold">Welcome to Interview Quiz! 📋</h1>
-        <p class="font-semibold text-neutral-700">Here you can prepare for an interview with your questions.</p>
-        <p class="text-neutral-700 tracking-tight p-1 border-dashed border-2 border-red-500 mb-2">To begin, upload the file
-            in
-            <span class="font-semibold underline">.txt</span> format, where each row represents a question.
-        </p>
-        <input type="file" @change="handleFileChange" />
-        <button
-            class="p-1 ml-auto bg-lime-500 hover:bg-lime-400 focus:bg-lime-400 disabled:bg-neutral-300 my-2 rounded-md text-white font-semibold px-2"
-            @click="startQuiz" :disabled="convertedData.length === 0">Start a Quiz</button>
-    </section>
+    <input type="file" @change="handleFileChange" />
+    <button
+        class="p-1 ml-auto bg-lime-500 hover:bg-lime-400 focus:bg-lime-400 disabled:bg-neutral-300 my-2 rounded-md text-white font-semibold px-2"
+        @click="startQuiz" :disabled="convertedData.length === 0">Start a Quiz</button>
 </template>

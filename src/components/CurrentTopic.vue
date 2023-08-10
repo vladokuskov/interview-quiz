@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useQuizesStore } from '../stores/quizes';
 import { QuizState } from '@/types/global.types';
 import CurrentTopicProgressBar from './CurrentTopicProgressBar.vue';
@@ -9,33 +9,35 @@ const quizesStore = useQuizesStore()
 const { quizes } = storeToRefs(quizesStore)
 const { nextTopic, changeQuizState } = quizesStore
 
-const currentIndex = ref(quizes.value ? Math.floor(Math.random() * quizes.value.length) : 0);
-
 const quizExplanation = ref('');
 
-const handleNextQuiz = () => {
+const currentIndex = computed(() => {
+    return Math.floor(Math.random() * quizes.value.length)
+});
 
-    if (quizes.value.length > 0) {
-        currentIndex.value = Math.floor(Math.random() * quizes.value.length);
-        const selectedQuiz = quizes.value[currentIndex.value];
-
-
-        nextTopic(selectedQuiz.title, quizExplanation.value);
-        quizExplanation.value = '';
+const currentQuiz = computed(() => {
+    if (quizes.value.length > 0 && quizes.value[currentIndex.value]) {
+        return quizes.value[currentIndex.value];
+    } else {
+        return null
     }
+});
 
 
-
+const handleNextQuiz = () => {
+    if (quizes.value.length > 0 && currentQuiz.value !== null) {
+        nextTopic(currentQuiz.value.title, quizExplanation.value);
+        quizExplanation.value = '';
+    } else {
+        return
+    }
 }
 </script>
 
 <template>
     <section class="flex w-full flex-col items-center justify-center gap-4">
         <CurrentTopicProgressBar />
-
-        <h1 v-if="quizes.length > 0 && quizes[currentIndex] && quizes[currentIndex].title !== undefined"
-            class="text-xl font-semibold text-neutral-700">{{ quizes[currentIndex].title }}</h1>
-
+        <h1 v-if="currentQuiz" class="text-xl font-semibold text-neutral-700">{{ currentQuiz.title }}</h1>
         <textarea v-model="quizExplanation" aria-label="Topic explanation"
             placeholder="Write your answer/explanation here..."
             class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4 min-h-[6rem] resize-yz"
