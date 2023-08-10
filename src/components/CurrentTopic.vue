@@ -15,29 +15,23 @@ const currentIndex = computed(() => {
     return Math.floor(Math.random() * quizes.value.length)
 });
 
-const currentQuiz = computed(() => {
-    if (quizes.value.length > 0 && quizes.value[currentIndex.value]) {
-        return quizes.value[currentIndex.value];
-    } else {
-        return null
-    }
-});
-
-
 const handleNextQuiz = () => {
-    if (quizes.value.length > 0 && currentQuiz.value !== null) {
-        nextTopic(currentQuiz.value.title, quizExplanation.value);
-        quizExplanation.value = '';
+    if (quizes.value.length > 0) {
+        const currentQuiz = quizes.value[currentIndex.value];
+        if (currentQuiz) {
+            nextTopic(currentQuiz.title, quizExplanation.value);
+            quizExplanation.value = '';
+        }
     } else {
-        return
+        return;
     }
-}
+};
 </script>
 
 <template>
     <section class="flex w-full flex-col items-center justify-center gap-4">
         <CurrentTopicProgressBar />
-        <h1 v-if="currentQuiz" class="text-xl font-semibold text-neutral-700">{{ currentQuiz.title }}</h1>
+        <h1 v-if="quizes[currentIndex]" class="text-xl font-semibold text-neutral-700">{{ quizes[currentIndex].title }}</h1>
         <textarea v-model="quizExplanation" aria-label="Topic explanation"
             placeholder="Write your answer/explanation here..."
             class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4 min-h-[6rem] resize-yz"
