@@ -31,6 +31,8 @@
 
 body {
   background-color: #ffffff;
+
+  touch-action: manipulation;
 }
 
 li {
