@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { useQuizesStore } from '../stores/quizes';
+import BaseButton from './BaseButton.vue';
 
 
 const quizesStore = useQuizesStore()
@@ -65,7 +66,7 @@ const startQuiz = () => {
 
 <template>
     <input type="file" @change="handleFileChange" />
-    <button
-        class="p-1 ml-auto bg-lime-500 hover:bg-lime-400 focus:bg-lime-400 disabled:bg-neutral-300 my-2 rounded-md text-white font-semibold px-2"
-        @click="startQuiz" :disabled="convertedData.length === 0">Start a Quiz</button>
+    <BaseButton color="lime" @click="startQuiz" :disabled="convertedData.length === 0">
+        Start a Quiz <icon-mdi-arrow-right />
+    </BaseButton>
 </template>

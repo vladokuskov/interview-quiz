@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia';
 import { useQuizesStore } from '../stores/quizes';
 import CompletedTopicCard from './CompletedTopicCard.vue';
 import { QuizState } from '@/types/global.types'
+import BaseButton from './BaseButton.vue';
 
 const quizesStore = useQuizesStore()
 const { completedQuizes, preLoadedQuizes, quizes } = storeToRefs(quizesStore)
@@ -29,13 +30,13 @@ const handleQuizReset = () => {
         <p class="font-semibold text-neutral-400 text-sm">{{ completedQuizes.length }} topics of {{ preLoadedQuizes.length
         }}</p>
         <div class="flex items-center justify-start gap-4">
-            <button v-if="quizes.length" @click="changeQuizState(QuizState.answering)" aria-label="Continue"
-                class="p-1 bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 my-2 rounded-md text-white font-semibold px-2">Continue</button>
-            <button v-if="completedQuizes.length" @click="handleTopicsReset" aria-label="Reset topics"
-                class="p-1 bg-yellow-500 hover:bg-yellow-400 focus:bg-yellow-400 my-2 rounded-md text-white font-semibold px-2">Reset</button>
-            <button @click="handleQuizReset" aria-label="Quiz reset"
-                class="p-1 bg-red-500 hover:bg-red-400 focus:bg-red-400 my-2 rounded-md text-white font-semibold px-2">Quiz
-                reset</button>
+            <BaseButton color="blue" v-if="quizes.length" @click="changeQuizState(QuizState.answering)"
+                aria-label="Continue">Continue</BaseButton>
+            <BaseButton color="yellow" v-if="completedQuizes.length" @click="handleTopicsReset" aria-label="Reset topics">
+                <icon-mdi-restart />Reset
+            </BaseButton>
+            <BaseButton color="red" @click="handleQuizReset" aria-label="Quiz reset"><icon-mdi-restart-alert />Quiz reset
+            </BaseButton>
         </div>
 
         <div v-for="topic in completedQuizes" :key="topic.title"

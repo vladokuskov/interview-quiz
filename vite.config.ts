@@ -1,4 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Components from 'unplugin-vue-components/vite'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -7,6 +10,16 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [
     vue(),
+    Components({
+      resolvers: [
+        IconsResolver({
+          prefix: 'icon'
+        })
+      ]
+    }),
+    Icons({
+      /* options */
+    })
   ],
   resolve: {
     alias: {
