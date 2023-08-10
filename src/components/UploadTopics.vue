@@ -66,7 +66,7 @@ const startQuiz = () => {
 
 <template>
     <input type="file" @change="handleFileChange" />
-    <BaseButton color="lime" @click="startQuiz" :disabled="convertedData.length === 0">
+    <BaseButton color="lime" class="self-end mt-4" @click="startQuiz" :disabled="convertedData.length === 0">
         Start a Quiz <icon-mdi-arrow-right />
     </BaseButton>
 </template>
