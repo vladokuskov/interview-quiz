@@ -16,11 +16,12 @@ declare module 'vue' {
     IconMdiArrow: typeof import('~icons/mdi/arrow')['default']
     IconMdiArrowLeft: typeof import('~icons/mdi/arrow-left')['default']
     IconMdiArrowRight: typeof import('~icons/mdi/arrow-right')['default']
+    IconMdiChevronDown: typeof import('~icons/mdi/chevron-down')['default']
+    IconMdiChevronUp: typeof import('~icons/mdi/chevron-up')['default']
     IconMdiNotebookOutline: typeof import('~icons/mdi/notebook-outline')['default']
     IconMdiRestart: typeof import('~icons/mdi/restart')['default']
     IconMdiRestartAlert: typeof import('~icons/mdi/restart-alert')['default']
     IconMdiUndo: typeof import('~icons/mdi/undo')['default']
-    TheButton: typeof import('./src/components/TheButton.vue')['default']
     TheIntroduction: typeof import('./src/components/TheIntroduction.vue')['default']
     UploadTopics: typeof import('./src/components/UploadTopics.vue')['default']
   }
