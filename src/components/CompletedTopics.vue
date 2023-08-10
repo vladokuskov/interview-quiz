@@ -24,7 +24,7 @@ const handleQuizReset = () => {
 </script>
 
 <template>
-    <section class="w-full mt-8">
+    <section class="w-full">
         <h2 class="text-xl font-semibold text-neutral-700">Completed topics</h2>
         <p class="font-semibold text-neutral-400 text-sm">{{ completedQuizes.length }} topics of {{ preLoadedQuizes.length
         }}</p>

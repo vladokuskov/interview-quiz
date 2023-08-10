@@ -19,6 +19,6 @@ watch(completedQuizes.value, () => {
 </script>
 
 <template>
-    <div v-if="quizes.length" :class="`bg-lime-200 max-w-full self-start h-2 top-0 left-0`"
+    <div v-if="quizes.length" :class="`bg-lime-200 absolute max-w-full self-start h-2 top-0 left-0`"
         :style="{ width: `${progressPercent}%` }" />
 </template>
