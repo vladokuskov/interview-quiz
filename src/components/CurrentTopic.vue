@@ -33,7 +33,8 @@ const handleNextQuiz = () => {
     <section class="flex w-full flex-col items-center justify-center gap-4">
         <CurrentTopicProgressBar />
 
-        <h1 class="text-xl font-semibold text-neutral-700">{{ quizes && quizes[currentIndex].title }}</h1>
+        <h1 v-if="quizes && quizes.length > 0 && quizes[currentIndex].title !== undefined"
+            class="text-xl font-semibold text-neutral-700">{{ quizes[currentIndex].title }}</h1>
 
         <textarea v-model="quizExplanation" aria-label="Topic explanation"
             placeholder="Write your answer/explanation here..."
