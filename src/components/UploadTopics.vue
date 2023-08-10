@@ -2,6 +2,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { useQuizesStore } from '../stores/quizes';
 
+
 const quizesStore = useQuizesStore()
 const { loadTopics, } = quizesStore
 
@@ -11,14 +12,21 @@ const convertedData = ref<string[]>([]);
 const handleFileChange = (event: Event) => {
     const target = event.target as HTMLInputElement;
     const file = target.files?.[0];
+
     if (file) {
-        const reader = new FileReader();
+        const allowedTypes = ['text/plain'];
 
-        reader.onload = () => {
-            fileContent.value = reader.result as string;
-        };
+        if (allowedTypes.includes(file.type)) {
+            const reader = new FileReader();
 
-        reader.readAsText(file);
+            reader.onload = () => {
+                fileContent.value = reader.result as string;
+            };
+
+            reader.readAsText(file);
+        } else {
+            return;
+        }
     }
 };
 
@@ -39,6 +47,11 @@ const convertToFileObject = () => {
     if (fileContent.value) {
         const lines = fileContent.value.split('\n');
         const topics = lines.map(line => line.trim()).filter(line => line !== '');
+
+        if (topics.length === 0) {
+            return;
+        }
+
         convertedData.value = topics;
     }
 };

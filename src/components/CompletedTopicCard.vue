@@ -21,7 +21,7 @@ const isExplanationOpen = ref(false)
             <h3 class="font-semibold text-neutral-700">{{ title }}</h3>
         </button>
         <p v-if="isExplanationOpen && explanation.length"
-            class="w-full text-center font-semibold text-neutral-800 p-2 bg-blue-200 rounded-b-md"
+            class="w-full text-center font-semibold text-neutral-800 p-2 bg-yellow-200 border-t-2 border-yellow-300 rounded-b-md"
             style="white-space: pre-line;" v-html="explanation"></p>
         <div v-if="explanation.length" class="absolute right-1 top-1 p-1 rounded-full bg-green-400" />
     </div>
