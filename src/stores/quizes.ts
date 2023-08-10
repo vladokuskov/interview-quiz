@@ -15,6 +15,7 @@ export const useQuizesStore = defineStore('quizes', () => {
       preLoadedQuizes.value = topics.slice()
       localStorage.setItem('topics', JSON.stringify(topics.slice()))
       selectedQuizState.value = QuizState.answering
+      completedQuizes.value = []
     }
   }
 
@@ -27,6 +28,7 @@ export const useQuizesStore = defineStore('quizes', () => {
     preLoadedQuizes.value = []
     localStorage.setItem('topics', JSON.stringify([]))
     selectedQuizState.value = QuizState.pending
+    completedQuizes.value = []
   }
 
   const resetTopics = () => {
