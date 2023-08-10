@@ -36,7 +36,6 @@ const handleNextQuiz = () => {
             placeholder="Write your answer/explanation here..."
             class="p-1 bg-neutral-200 rounded-md font-semibold text-neutral-800 w-full mt-4 min-h-[6rem] resize-yz"
             style="white-space: pre-line;"></textarea>
-
         <div class="w-full flex gap-2 items-center justify-between">
             <button @click="changeQuizState(QuizState.results)" aria-label="See results"
                 class="p-1 bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 my-2 rounded-md text-white font-semibold px-2">
@@ -47,6 +46,5 @@ const handleNextQuiz = () => {
                 Next
             </button>
         </div>
-
     </section>
 </template>
