@@ -29,7 +29,7 @@ const handleQuizReset = () => {
         <h2 class="text-xl font-semibold text-neutral-700">Completed topics</h2>
         <p class="font-semibold text-neutral-400 text-sm">{{ completedQuizes.length }} topics of {{ preLoadedQuizes.length
         }}</p>
-        <div class="flex items-center justify-start gap-4 my-4">
+        <div class="flex items-center justify-start gap-4 flex-wrap my-4">
             <BaseButton color="blue" v-if="quizes.length" @click="changeQuizState(QuizState.answering)"
                 aria-label="Continue">Continue</BaseButton>
             <BaseButton color="yellow" v-if="completedQuizes.length" @click="handleTopicsReset" aria-label="Reset topics">
