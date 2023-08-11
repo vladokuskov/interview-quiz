@@ -42,7 +42,7 @@ const handleNextQuiz = () => {
                 <icon-mdi-notebook-outline /> See results
             </BaseButton>
             <BaseButton color="lime" @click="handleNextQuiz" aria-label="Next topic" :disabled="quizes.length === 0">
-                <icon-mdi-notebook-outline />Next
+                Next
                 <icon-mdi-arrow-right />
             </BaseButton>
         </div>
