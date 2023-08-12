@@ -6,7 +6,7 @@ import { QuizState } from '@/types/global.types'
 import BaseButton from './BaseButton.vue';
 
 const quizesStore = useQuizesStore()
-const { completedQuizes, preLoadedQuizes, quizes } = storeToRefs(quizesStore)
+const { completedTopics, allTopics, leftTopics } = storeToRefs(quizesStore)
 const { resetTopics, changeQuizState, fullQuizReset } = quizesStore
 
 const handleTopicsReset = () => {
@@ -22,24 +22,25 @@ const handleQuizReset = () => {
         fullQuizReset()
     }
 }
+
 </script>
 
 <template>
     <section class="w-full">
         <h2 class="text-xl font-semibold text-neutral-700">Completed topics</h2>
-        <p class="font-semibold text-neutral-400 text-sm">{{ completedQuizes.length }} topics of {{ preLoadedQuizes.length
+        <p class="font-semibold text-neutral-400 text-sm">{{ completedTopics.length }} topics of {{ allTopics.length
         }}</p>
         <div class="flex items-center justify-start gap-4 flex-wrap my-4">
-            <BaseButton color="blue" v-if="quizes.length" @click="changeQuizState(QuizState.answering)"
+            <BaseButton color="blue" v-if="leftTopics.length" @click="changeQuizState(QuizState.answering)"
                 aria-label="Continue">Continue</BaseButton>
-            <BaseButton color="yellow" v-if="completedQuizes.length" @click="handleTopicsReset" aria-label="Reset topics">
+            <BaseButton color="yellow" v-if="completedTopics.length" @click="handleTopicsReset" aria-label="Reset topics">
                 <icon-mdi-restart />Reset
             </BaseButton>
             <BaseButton color="red" @click="handleQuizReset" aria-label="Quiz reset"><icon-mdi-restart-alert />Quiz reset
             </BaseButton>
         </div>
 
-        <div v-for="topic in completedQuizes" :key="topic.title"
+        <div v-for="topic in completedTopics" :key="topic.title"
             class="w-full flex flex-col items-center gap-4 justify-center">
             <CompletedTopicCard :title="topic.title" :explanation="topic.explanation" />
         </div>

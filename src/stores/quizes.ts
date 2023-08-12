@@ -4,18 +4,40 @@ import type { CompletedTopic, Topic } from '@/types/Topic.types'
 import { QuizState } from '@/types/global.types'
 
 export const useQuizesStore = defineStore('quizes', () => {
-  const preLoadedQuizes = ref<Topic[]>([])
-  const quizes = ref<Topic[]>([])
-  const completedQuizes = ref<CompletedTopic[]>([])
+  const allTopics = ref<Topic[]>([])
+  const leftTopics = ref<Topic[]>([])
+  const completedTopics = ref<CompletedTopic[]>([])
   const selectedQuizState = ref<QuizState>(QuizState.pending)
+
+  const restoreTopics = (all: Topic[], left?: Topic[], completed?: CompletedTopic[]) => {
+    if (all.length) {
+      allTopics.value = all.slice()
+
+      if (completed !== undefined && completed.length) {
+        completedTopics.value = completed.slice()
+      }
+
+      if (left !== undefined && left.length) {
+        leftTopics.value = left.slice()
+      }
+
+      selectedQuizState.value = QuizState.answering
+    }
+  }
 
   const loadTopics = (topics: Topic[]) => {
     if (topics.length) {
-      quizes.value = topics
-      preLoadedQuizes.value = topics.slice()
-      localStorage.setItem('topics', JSON.stringify(topics.slice()))
+      leftTopics.value = topics
+      allTopics.value = topics.slice()
+
+      // Reset completed topics
+      completedTopics.value = []
+
+      localStorage.setItem('allTopics', JSON.stringify(topics.slice()))
+      localStorage.setItem('leftTopics', JSON.stringify(topics.slice()))
+      localStorage.setItem('completedTopics', JSON.stringify([]))
+
       selectedQuizState.value = QuizState.answering
-      completedQuizes.value = []
     }
   }
 
@@ -24,41 +46,53 @@ export const useQuizesStore = defineStore('quizes', () => {
   }
 
   const fullQuizReset = () => {
-    quizes.value = []
-    preLoadedQuizes.value = []
-    localStorage.setItem('topics', JSON.stringify([]))
+    leftTopics.value = []
+    allTopics.value = []
+    completedTopics.value = []
+
+    localStorage.setItem('allTopics', JSON.stringify([]))
+    localStorage.setItem('leftTopics', JSON.stringify([]))
+    localStorage.setItem('completedTopics', JSON.stringify([]))
+
     selectedQuizState.value = QuizState.pending
-    completedQuizes.value = []
   }
 
   const resetTopics = () => {
-    quizes.value = JSON.parse(JSON.stringify(preLoadedQuizes.value))
-    completedQuizes.value = []
+    leftTopics.value = JSON.parse(JSON.stringify(allTopics.value))
+    completedTopics.value = []
+
+    localStorage.setItem('leftTopics', JSON.stringify(allTopics.value.slice()))
+    localStorage.setItem('completedTopics', JSON.stringify([]))
+
     changeQuizState(QuizState.answering)
   }
 
   const nextTopic = (title: string, explanation: string) => {
-    const removedTopicIndex = quizes.value.findIndex((topic) => topic.title === title)
+    const removedTopicIndex = leftTopics.value.findIndex((topic) => topic.title === title)
 
     if (removedTopicIndex !== undefined && removedTopicIndex !== -1) {
-      const removedTopic = quizes.value.splice(removedTopicIndex, 1)[0]
-      if (removedTopic) completedQuizes.value.push({ title: removedTopic.title, explanation })
+      const removedTopic = leftTopics.value.splice(removedTopicIndex, 1)[0]
+      if (removedTopic) completedTopics.value.push({ title: removedTopic.title, explanation })
     }
 
-    if (quizes.value && quizes.value.length === 0) {
+    if (leftTopics.value && !leftTopics.value.length) {
       changeQuizState(QuizState.results)
     }
+
+    localStorage.setItem('leftTopics', JSON.stringify(leftTopics.value.slice()))
+    localStorage.setItem('completedTopics', JSON.stringify(completedTopics.value.slice()))
   }
 
   return {
-    quizes,
-    completedQuizes,
+    allTopics,
+    leftTopics,
+    completedTopics,
+    selectedQuizState,
     nextTopic,
     loadTopics,
     changeQuizState,
     resetTopics,
-    preLoadedQuizes,
-    selectedQuizState,
-    fullQuizReset
+    fullQuizReset,
+    restoreTopics
   }
 })

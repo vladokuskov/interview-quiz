@@ -6,10 +6,21 @@ import CurrentTopic from './components/CurrentTopic.vue';
 import UploadTopics from './components/UploadTopics.vue';
 import { useQuizesStore } from './stores/quizes';
 import TheIntroduction from './components/TheIntroduction.vue';
-
+import { onMounted } from 'vue';
 
 const quizesStore = useQuizesStore()
+const { restoreTopics } = quizesStore
 const { selectedQuizState } = storeToRefs(quizesStore)
+
+onMounted(() => {
+  const allTopics = localStorage.getItem('allTopics');
+  const leftTopics = localStorage.getItem('leftTopics');
+  const completedTopics = localStorage.getItem('completedTopics');
+
+  if (allTopics && allTopics.length) {
+    restoreTopics(JSON.parse(allTopics), (JSON.parse(leftTopics)), (JSON.parse(completedTopics)))
+  }
+});
 
 </script>
 

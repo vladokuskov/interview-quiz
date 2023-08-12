@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useQuizesStore } from '../stores/quizes';
 import BaseButton from './BaseButton.vue';
 
 
 const quizesStore = useQuizesStore()
-const { loadTopics, } = quizesStore
+const { loadTopics } = quizesStore
 
 const fileContent = ref<string | null>(null);
 const convertedData = ref<string[]>([]);
@@ -30,13 +30,6 @@ const handleFileChange = (event: Event) => {
         }
     }
 };
-
-onMounted(() => {
-    const topics = localStorage.getItem('topics');
-    if (topics && topics.length) {
-        loadTopics(JSON.parse(topics));
-    }
-});
 
 watch(fileContent, () => {
     if (fileContent.value) {
