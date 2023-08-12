@@ -19,7 +19,7 @@ const { color = 'neutral' } = toRefs(props)
                 color === 'lime' ? 'bg-lime-400 hover:bg-lime-300 focus:bg-lime-300' :
                     color === 'yellow' ? 'bg-yellow-400 hover:bg-yellow-300 focus:bg-yellow-300' :
                         '',
-        'inline-flex items-center justify-center gap-2 flex-wrap transition-all rounded-md font-semibold py-1 px-4 text-white disabled:bg-neutral-400'
+        'inline-flex items-center justify-center gap-2 flex-wrap transition-all rounded-md font-semibold py-1 px-4 text-white disabled:bg-neutral-400 '
     )">
         <slot></slot>
     </button>
