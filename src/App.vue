@@ -18,7 +18,10 @@ onMounted(() => {
   const completedTopics = localStorage.getItem('completedTopics');
 
   if (allTopics && allTopics.length) {
-    restoreTopics(JSON.parse(allTopics), (JSON.parse(leftTopics)), (JSON.parse(completedTopics)))
+    const parsedLeftTopics = (leftTopics !== undefined && leftTopics !== null) ? JSON.parse(leftTopics) : [];
+    const parsedCompletedTopics = (completedTopics !== undefined && completedTopics !== null) ? JSON.parse(completedTopics) : [];
+
+    restoreTopics(JSON.parse(allTopics), parsedLeftTopics, parsedCompletedTopics)
   }
 });
 
