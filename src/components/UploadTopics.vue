@@ -58,7 +58,7 @@ const startQuiz = () => {
 </script>
 
 <template>
-    <input type="file" @change="handleFileChange" />
+    <input type="file" accept=".txt" @change="handleFileChange" />
     <BaseButton color="lime" class="self-end mt-4" @click="startQuiz" :disabled="convertedData.length === 0">
         Start a Quiz <icon-mdi-arrow-right />
     </BaseButton>
