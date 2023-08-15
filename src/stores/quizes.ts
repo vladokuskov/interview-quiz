@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { CompletedTopic, Topic } from '@/types/Topic.types'
 import { QuizState } from '@/types/global.types'
+import lodash from 'lodash'
 
 export const useQuizesStore = defineStore('quizes', () => {
   const allTopics = ref<Topic[]>([])
@@ -58,7 +59,7 @@ export const useQuizesStore = defineStore('quizes', () => {
   }
 
   const resetTopics = () => {
-    leftTopics.value = JSON.parse(JSON.stringify(allTopics.value))
+    leftTopics.value = lodash.cloneDeep(allTopics.value)
     completedTopics.value = []
 
     localStorage.setItem('leftTopics', JSON.stringify(allTopics.value.slice()))
