@@ -42,6 +42,18 @@ export const useQuizesStore = defineStore('quizes', () => {
     }
   }
 
+  const returnTopicToUnAnswered = (title: string) => {
+    const returnedTopicIndex = completedTopics.value.findIndex((topic) => topic.title === title)
+
+    if (returnedTopicIndex !== undefined && returnedTopicIndex !== -1) {
+      const returnedTopic = completedTopics.value.splice(returnedTopicIndex, 1)[0]
+      if (returnedTopic) leftTopics.value.push({ title: returnedTopic.title })
+    }
+
+    localStorage.setItem('leftTopics', JSON.stringify(leftTopics.value.slice()))
+    localStorage.setItem('completedTopics', JSON.stringify(completedTopics.value.slice()))
+  }
+
   const changeQuizState = (state: QuizState) => {
     selectedQuizState.value = state
   }
@@ -94,6 +106,7 @@ export const useQuizesStore = defineStore('quizes', () => {
     changeQuizState,
     resetTopics,
     fullQuizReset,
-    restoreTopics
+    restoreTopics,
+    returnTopicToUnAnswered
   }
 })

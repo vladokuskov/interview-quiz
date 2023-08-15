@@ -13,6 +13,7 @@ declare module 'vue' {
     CurrentTopic: typeof import('./src/components/CurrentTopic.vue')['default']
     CurrentTopicProgressBar: typeof import('./src/components/CurrentTopicProgressBar.vue')['default']
     IconMdiArrowRight: typeof import('~icons/mdi/arrow-right')['default']
+    IconMdiBackburger: typeof import('~icons/mdi/backburger')['default']
     IconMdiChevronDown: typeof import('~icons/mdi/chevron-down')['default']
     IconMdiChevronUp: typeof import('~icons/mdi/chevron-up')['default']
     IconMdiNotebookOutline: typeof import('~icons/mdi/notebook-outline')['default']
