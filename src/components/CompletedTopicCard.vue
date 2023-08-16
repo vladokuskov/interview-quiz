@@ -16,7 +16,7 @@ const { returnTopicToUnAnswered } = quizesStore
 
 const isExplanationOpen = ref(false)
 
-const sanitizeExplanation = (explanation) => {
+const sanitizeExplanation = (explanation: string) => {
     return DOMPurify.sanitize(explanation, { ALLOWED_TAGS: [], KEEP_CONTENT: true });
 }
 
