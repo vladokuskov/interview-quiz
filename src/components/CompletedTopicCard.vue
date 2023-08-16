@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import clsx from 'clsx'
 import { useQuizesStore } from '../stores/quizes';
-
+import DOMPurify from 'dompurify';
 
 type CompletedTopicCard = {
     title: string
@@ -16,6 +16,9 @@ const { returnTopicToUnAnswered } = quizesStore
 
 const isExplanationOpen = ref(false)
 
+const sanitizeExplanation = (explanation) => {
+    return DOMPurify.sanitize(explanation, { ALLOWED_TAGS: [], KEEP_CONTENT: true });
+}
 
 </script>
 
@@ -37,7 +40,7 @@ const isExplanationOpen = ref(false)
 
         <p v-if="isExplanationOpen && explanation.length"
             class="w-full text-center font-semibold text-neutral-800 p-2 bg-yellow-200 border-t-2 border-yellow-300 rounded-b-md"
-            style="white-space: pre-line;" v-html="explanation"></p>
+            style="white-space: pre-line;" v-html="sanitizeExplanation(explanation)"></p>
         <div v-if="explanation.length" class="absolute left-1 top-1 p-1 rounded-full bg-green-400 bg-opacity-50" />
     </div>
 </template>
