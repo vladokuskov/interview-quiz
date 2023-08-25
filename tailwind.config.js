@@ -4,19 +4,20 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        secondary: '#2F2F2F'
-      }
+        secondary: '#2F2F2F',
+      },
     },
     fontFamily: {
       inria: 'Inria Sans',
-      lusitana: 'Lusitana'
+      lusitana: 'Lusitana',
     },
     boxShadow: {
-      brutalism: '3px 3px 0px 0px rgba(0, 0, 0)'
-    }
+      brutalism: '3px 3px 0px 0px rgba(0, 0, 0)',
+      'brutalism-sm': '1px 1px 0px 0px rgba(0, 0, 0)',
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 }
