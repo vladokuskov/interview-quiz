@@ -38,8 +38,15 @@
   box-shadow: none;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  background-color: #ffffff;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: linear-gradient(135deg, #f7f7ee 0%, #e7f5ea 100%);
 
   touch-action: manipulation;
 }
