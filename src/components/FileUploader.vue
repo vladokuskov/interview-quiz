@@ -106,9 +106,11 @@ onUnmounted(() => {
         @keydown="handleKeyDown" tabindex="0" role="button" aria-label="Upload File" :class="clsx('w-full bg-[#EDEAFD] p-2 flex flex-col items-center justify-center gap-2 rounded-lg border-dashed border-2 border-black transition-all',
             'hover:bg-[#DDDAED] focus:bg-[#DDDAED] focus-visible:ring-yellow-400 focus-visible:ring-4',
             isDraggedOver && '!bg-[#D7F8D7] !border-[#3D613D] !border-solid')">
-        <span><icon-mdi-file-plus-outline class="text-4xl" /></span>
+        <span :class="isDraggedOver && 'pointer-events-none'"><icon-mdi-file-plus-outline class="text-4xl" /></span>
 
-        <p v-if="!fileContent" class="font-inria font-semibold text-secondary">Drag & drop or Browse to choose a file (.txt)
+        <p v-if="!fileContent"
+            :class="clsx('font-inria font-semibold text-secondary', isDraggedOver && 'pointer-events-none')">Drag & drop or
+            Browse to choose a file (.txt)
         </p>
 
         <input type="file" accept=".txt" class="hidden" aria-hidden="true" ref="fileInputRef" @change="handleFileBrowse" />
