@@ -26,10 +26,12 @@ const handleQuizReset = () => {
 </script>
 
 <template>
-    <section class="w-full">
-        <h2 class="text-xl font-semibold text-neutral-700">Completed topics</h2>
-        <p class="font-semibold text-neutral-400 text-sm">{{ completedTopics.length }} topics of {{ allTopics.length
+    <section class="w-full max-w-[40rem]">
+        <h2 class="text-2xl tracking-wide font-lusitana font-semibold text-black">Completed topics</h2>
+        <p class="font-semibold font-inria text-secondary leading-4">{{ completedTopics.length }} topics of {{
+            allTopics.length
         }}</p>
+
         <div class="flex items-center justify-start gap-4 flex-wrap my-4">
             <BaseButton color="blue" v-if="leftTopics.length" @click="changeQuizState(QuizState.answering)"
                 aria-label="Continue">Continue</BaseButton>
