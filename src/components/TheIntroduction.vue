@@ -27,7 +27,7 @@ const startQuiz = (topics: string[]) => {
         </div>
         <div
             class="rounded-lg max-md:w-full max-md:h-[15rem] max-md:mt-12 w-[20rem] h-[30rem] border-black bg-black border-2 shadow-brutalism">
-            <img src="/hero.webp" alt="Hero picture" class="object-cover rounded-lg w-full h-full" />
+            <img src="/hero.webp" alt="Hero picture" class="object-cover rounded-lg w-full h-full bg-neutral-300" />
         </div>
     </section>
 </template>
