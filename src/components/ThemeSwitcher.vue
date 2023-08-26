@@ -15,11 +15,15 @@ const updateTheme = (dark: boolean) => {
 
     const theme = dark ? 'dark' : 'light';
     localStorage.theme = theme;
-    themeMetaTag.setAttribute('content', themeColor);
+
     if (dark) {
         document.documentElement.classList.add('dark');
     } else {
         document.documentElement.classList.remove('dark');
+    }
+
+    if (themeMetaTag) {
+        themeMetaTag.setAttribute('content', themeColor);
     }
 };
 
