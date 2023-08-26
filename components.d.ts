@@ -17,17 +17,13 @@ declare module 'vue' {
     IconMdiBackburger: typeof import('~icons/mdi/backburger')['default']
     IconMdiChevronDown: typeof import('~icons/mdi/chevron-down')['default']
     IconMdiChevronUp: typeof import('~icons/mdi/chevron-up')['default']
-    IconMdiFile: typeof import('~icons/mdi/file')['default']
     IconMdiFilePlusOutline: typeof import('~icons/mdi/file-plus-outline')['default']
-    IconMdiFileUpload: typeof import('~icons/mdi/file-upload')['default']
     IconMdiMoonWaxingCrescent: typeof import('~icons/mdi/moon-waxing-crescent')['default']
     IconMdiNotebookOutline: typeof import('~icons/mdi/notebook-outline')['default']
-    IconMdiNotePlusOutline: typeof import('~icons/mdi/note-plus-outline')['default']
     IconMdiRestart: typeof import('~icons/mdi/restart')['default']
     IconMdiRestartAlert: typeof import('~icons/mdi/restart-alert')['default']
     IconMdiWhiteBalanceSunny: typeof import('~icons/mdi/white-balance-sunny')['default']
     TheIntroduction: typeof import('./src/components/TheIntroduction.vue')['default']
     ThemeSwitcher: typeof import('./src/components/ThemeSwitcher.vue')['default']
-    ThemeSwticher: typeof import('./src/components/ThemeSwticher.vue')['default']
   }
 }

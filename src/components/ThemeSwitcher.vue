@@ -10,8 +10,12 @@ const toggleTheme = () => {
 };
 
 const updateTheme = (dark: boolean) => {
+    const themeMetaTag = document.querySelector('meta[name="theme-color"]');
+    const themeColor = isDark.value ? '#161615' : '#f7f7ee';
+
     const theme = dark ? 'dark' : 'light';
     localStorage.theme = theme;
+    themeMetaTag.setAttribute('content', themeColor);
     if (dark) {
         document.documentElement.classList.add('dark');
     } else {
