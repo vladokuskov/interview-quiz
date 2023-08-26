@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useQuizesStore } from '../stores/quizes';
 import FileUploader from './FileUploader.vue';
+import ThemeSwitcher from './ThemeSwitcher.vue';
 
 const quizesStore = useQuizesStore()
 const { loadTopics } = quizesStore
@@ -15,10 +16,11 @@ const startQuiz = (topics: string[]) => {
 <template>
     <section class="w-full flex items-start justify-between gap-4 max-md:flex-col">
         <div class="flex flex-col items-start justify-center gap-2 max-w-[65ch]">
-            <h1 class="text-3xl text-black font-lusitana tracking-wide">Welcome to Interview Quiz!</h1>
-            <p class="text-secondary font-inria text-[1.1rem]">Here you can prepare for an interview with your questions.
+            <h1 class="text-3xl font-lusitana tracking-wide">Welcome to Interview Quiz!</h1>
+            <p class="font-inria text-[1.1rem]">Here you can prepare for an interview with your questions.
             </p>
-            <p class="text-secondary font-inria text-[1.1rem] mt-6">To begin, upload the file in <strong>.txt</strong>
+            <ThemeSwitcher />
+            <p class="font-inria text-[1.1rem] mt-6">To begin, upload the file in <strong>.txt</strong>
                 format, where each row
                 represents a
                 question.</p>

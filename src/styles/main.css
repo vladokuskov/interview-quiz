@@ -9,6 +9,25 @@
     @apply focus-visible:ring-4;
     @apply focus-visible:ring-yellow-400;
   }
+
+  body {
+    @apply bg-gradient-to-r from-[#f7f7ee] to-[#e7f5ea];
+    @apply dark:bg-gradient-to-r dark:from-[#161615] dark:to-[#080e0e];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-black dark:text-white;
+  }
+
+  p,
+  span {
+    @apply text-secondary dark:text-[#e2e2e2];
+  }
 }
 
 *,
@@ -46,7 +65,6 @@ body {
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background: linear-gradient(135deg, #f7f7ee 0%, #e7f5ea 100%);
 
   touch-action: manipulation;
 }

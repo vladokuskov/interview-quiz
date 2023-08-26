@@ -27,8 +27,8 @@ const handleQuizReset = () => {
 
 <template>
     <section class="w-full max-w-[40rem]">
-        <h2 class="text-2xl tracking-wide font-lusitana font-semibold text-black">Completed topics</h2>
-        <p class="font-semibold font-inria text-secondary leading-4">{{ completedTopics.length }} topics of {{
+        <h2 class="text-2xl tracking-wide font-lusitana font-semibold ">Completed topics</h2>
+        <p class="font-semibold font-inria leading-4">{{ completedTopics.length }} topics of {{
             allTopics.length
         }}</p>
 
