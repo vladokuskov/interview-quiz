@@ -16,6 +16,7 @@ const updateTheme = (dark: boolean) => {
     const theme = dark ? 'dark' : 'light';
     localStorage.theme = theme;
 
+
     if (dark) {
         document.documentElement.classList.add('dark');
     } else {
