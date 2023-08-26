@@ -40,12 +40,12 @@ onMounted(() => {
 <template>
     <section class="flex w-full flex-col items-center justify-center gap-4 max-w-[40rem]">
         <CurrentTopicProgressBar />
-        <h1 v-if="leftTopics[currentIndex]" class="text-3xl font-inria font-semibold text-secondary">{{
+        <h1 v-if="leftTopics[currentIndex]" class="text-3xl font-inria font-semibold">{{
             leftTopics[currentIndex].title
         }}</h1>
         <textarea v-model="topicExplanation" aria-label="Topic explanation"
             placeholder="Write your answer/explanation here..."
-            class="p-1 bg-white font-inria tracking-wide rounded-md font-semibold text-black w-full mt-4 min-h-[15rem] resize-yz placeholder:font-medium"
+            class="p-1 bg-white dark:bg-[#dfdfdf] font-inria tracking-wide rounded-md font-semibold text-black w-full mt-4 min-h-[15rem] resize-yz placeholder:font-medium"
             style="white-space: pre-line;"></textarea>
         <div class="w-full flex gap-2 items-center justify-between">
             <BaseButton color="blue" @click="changeQuizState(QuizState.results)" aria-label="See results">

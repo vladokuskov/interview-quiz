@@ -104,12 +104,15 @@ onUnmounted(() => {
     <Toaster position="top-center" :duration="1500" richColors />
     <div @click="openFileInput" @dragover="handleDragOver" @dragleave="handleDragLeave" @drop="handleFileDrop"
         @keydown="handleKeyDown" tabindex="0" role="button" aria-label="Upload File" :class="clsx('w-full bg-[#EDEAFD] p-2 flex flex-col items-center justify-center gap-2 rounded-lg border-dashed border-2 border-black transition-all',
-            'hover:bg-[#DDDAED] focus:bg-[#DDDAED] focus-visible:ring-yellow-400 focus-visible:ring-4',
-            isDraggedOver && '!bg-[#D7F8D7] !border-[#3D613D] !border-solid')">
-        <span :class="isDraggedOver && 'pointer-events-none'"><icon-mdi-file-plus-outline class="text-4xl" /></span>
+            'hover:bg-[#DDDAED] dark:hover:bg-[#909181] focus:bg-[#DDDAED] dark:focus:bg-[#909181] focus-visible:ring-yellow-400 focus-visible:ring-4',
+            isDraggedOver && '!bg-[#D7F8D7] !border-[#3D613D] !border-solid ',
+            'dark:bg-[#6d6e5f] dark:border-[#ffffff]')">
+        <span :class="isDraggedOver && 'pointer-events-none dark:text-black'"><icon-mdi-file-plus-outline
+                class="text-4xl" /></span>
 
         <p v-if="!fileContent"
-            :class="clsx('font-inria font-semibold text-secondary', isDraggedOver && 'pointer-events-none')">Drag & drop or
+            :class="clsx('font-inria font-semibold', isDraggedOver && 'pointer-events-none dark:text-black')">Drag & drop
+            or
             Browse to choose a file (.txt)
         </p>
 

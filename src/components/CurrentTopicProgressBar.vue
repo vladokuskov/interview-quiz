@@ -22,5 +22,5 @@ watch(completedTopics.value, () => {
     <div v-if="leftTopics.length"></div>
     <div :class="`bg-[#5AADEA] absolute max-w-full self-start h-2 top-0 left-0 z-10`"
         :style="{ width: `${progressPercent}%` }" />
-    <div class="bg-[#D7D7D7] absolute w-full  h-2 top-0 left-0 z-0" />
+    <div class="bg-[#D7D7D7] bg-opacity-20 absolute w-full  h-2 top-0 left-0 z-0" />
 </template>
