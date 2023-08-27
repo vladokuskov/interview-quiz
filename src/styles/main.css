@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font imports */
+@font-face {
+  font-family: 'Lusitana';
+  font-display: swap;
+  src: url('fonts/Lusitana/Lusitana-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inria Sans';
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Inria/InriaSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inria Sans';
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/Inria/InriaSans-Bold.ttf') format('truetype');
+}
+/* Fonts imports */
+
 @layer base {
   button,
   input,
