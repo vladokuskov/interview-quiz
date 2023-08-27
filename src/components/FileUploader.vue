@@ -107,11 +107,13 @@ onUnmounted(() => {
             'hover:bg-[#DDDAED] dark:hover:bg-[#909181] focus:bg-[#DDDAED] dark:focus:bg-[#909181] focus-visible:ring-yellow-400 focus-visible:ring-4',
             isDraggedOver && '!bg-[#D7F8D7] !border-[#3D613D] !border-solid ',
             'dark:bg-[#6d6e5f] dark:border-[#ffffff]')">
-        <span :class="isDraggedOver && 'pointer-events-none dark:text-black'"><icon-mdi-file-plus-outline
+        <span
+            :class="clsx('dark:text-white', isDraggedOver && 'pointer-events-none dark:text-black')"><icon-mdi-file-plus-outline
                 class="text-4xl" /></span>
 
         <p v-if="!fileContent"
-            :class="clsx('font-inria font-semibold', isDraggedOver && 'pointer-events-none dark:text-black')">Drag & drop
+            :class="clsx('font-inria font-semibold dark:text-white', isDraggedOver && 'pointer-events-none dark:text-black')">
+            Drag & drop
             or
             Browse to choose a file (.txt)
         </p>
