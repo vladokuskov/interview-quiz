@@ -1,17 +1,19 @@
 /* Font imports */
 @font-face {
   font-family: 'Lusitana';
+  font-display: swap;
   src: url('./Lusitana/Lusitana-Bold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Inria Sans';
   font-weight: 400;
+  font-display: swap;
   src: url('./Inria/InriaSans-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Inria Sans';
   font-weight: 700;
-
+  font-display: swap;
   src: url('./Inria//InriaSans-Bold.ttf') format('truetype');
 }
 /* Fonts imports */
