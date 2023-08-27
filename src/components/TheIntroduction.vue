@@ -27,9 +27,9 @@ const startQuiz = (topics: string[]) => {
 
             <FileUploader :handle-change="startQuiz" class="mt-4" />
         </div>
-        <div
-            class="rounded-lg max-md:w-full max-md:h-[15rem] max-md:mt-12 w-[20rem] h-[30rem] border-black dark:border-white bg-black dark:bg-white border-2 shadow-brutalism dark:shadow-brutalism-dark">
-            <img src="/hero.webp" alt="Hero picture" class="object-cover rounded-lg w-full h-full bg-neutral-300" />
+        <div class="relative max-md:w-full max-md:h-[15rem] max-md:mt-12 w-[20rem] h-[30rem]">
+            <img src="/hero.webp" alt="Hero picture"
+                class="absolute inset-0 object-cover w-full h-full rounded-lg border-black dark:border-white bg-black dark:bg-white border-2 shadow-brutalism dark:shadow-brutalism-dark" />
         </div>
     </section>
 </template>
